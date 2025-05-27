@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nitesh Kumar - Digital Portfolio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+&nbsp;
+&nbsp;
+
+  /* Reset and base */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #fff;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+  }
+&nbsp;
+&nbsp;
+
+  /* Animated background: floating circles */
+  #background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+  }
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform, opacity;
+  }
+  .circle.small {
+    width: 20px;
+    height: 20px;
+    animation-name: floatUpSmall;
+  }
+  .circle.medium {
+    width: 40px;
+    height: 40px;
+    animation-name: floatUpMedium;
+  }
+  .circle.large {
+    width: 70px;
+    height: 70px;
+    animation-name: floatUpLarge;
+  }
+  @keyframes floatUpSmall {
+    0% {
+      transform: translateY(120vh) translateX(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-20vh) translateX(30px);
+      opacity: 0;
+    }
+  }
+  @keyframes floatUpMedium {
+    0% {
+      transform: translateY(130vh) translateX(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-20vh) translateX(-50px);
+      opacity: 0;
+    }
+  }
+  @keyframes floatUpLarge {
+    0% {
+      transform: translateY(140vh) translateX(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-20vh) translateX(70px);
+      opacity: 0;
+    }
+  }
+&nbsp;
+&nbsp;
+
+  /* Container */
+  .container {
+    max-width: 950px;
+    padding: 2.5rem 3rem;
+    margin: 2rem auto 4rem;
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: 25px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.7);
+    backdrop-filter: blur(12px);
+    position: relative;
+    z-index: 1;
+  }
+&nbsp;
+&nbsp;
+
+  /* Header with photo and intro */
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    padding-bottom: 2.75rem;
+    border-bottom: 2px solid #00ffc3;
+    animation: fadeInSlide 1s ease forwards;
+    opacity: 0;
+  }
+  header img {
+    border-radius: 50%;
+    border: 4px solid #00ffc3;
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    box-shadow: 0 0 35px #00ffc3;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 10px #00ffc3cc);
+  }
+  header h1 {
+    font-size: 3.8rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    background: linear-gradient(90deg, #00ffc3 0%, #00bcd4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  header p {
+    font-weight: 600;
+    color: #a0f1e0;
+    font-size: 1.3rem;
+    margin-top: 0.35rem;
+  }
+&nbsp;
+&nbsp;
+
+  .intro-text {
+    max-width: 480px;
+    line-height: 1.5;
+    margin-top: 1rem;
+    font-weight: 400;
+    font-size: 1.05rem;
+    color: #c4fff9cc;
+  }
+&nbsp;
+&nbsp;
+
+  /* Contact info */
+  .contact-info {
+    margin-top: 1.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    justify-content: center;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #00ffc3;
+    animation: fadeInSlide 1.2s ease forwards;
+    opacity: 0;
+  }
+  .contact-info span {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  .contact-info a {
+    color: #00ffc3;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .contact-info a:hover {
+    color: #00bcd4;
+  }
+  .contact-info svg {
+    width: 24px;
+    height: 24px;
+    fill: #00ffc3;
+    flex-shrink: 0;
+  }
+&nbsp;
+&nbsp;
+
+  /* Sections */
+  section {
+    margin-top: 3.2rem;
+    animation: fadeInSlide 1.4s ease forwards;
+    opacity: 0;
+  }
+  section h2 {
+    font-size: 2.5rem;
+    letter-spacing: 2.5px;
+    font-weight: 800;
+    border-left: 8px solid #00ffc3;
+    padding-left: 1.3rem;
+    margin-bottom: 1rem;
+    color: #00ffc3;
+    user-select: none;
+  }
+&nbsp;
+&nbsp;
+
+  /* Education */
+  .education {
+    background: rgba(0,255,195,0.15);
+    padding: 1.4rem 1.7rem;
+    border-radius: 20px;
+    box-shadow: 0 0 26px rgba(0,255,195,0.25);
+  }
+  .education h3 {
+    font-weight: 800;
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+  }
+  .education p {
+    font-style: italic;
+    font-weight: 600;
+    color: #a0f1e0;
+  }
+&nbsp;
+&nbsp;
+
+  /* About me summary */
+  .summary {
+    font-size: 1.22rem;
+    line-height: 1.7;
+    color: #c4fff9dd;
+    max-width: 760px;
+  }
+&nbsp;
+&nbsp;
+
+  /* Experience */
+  .experience-list {
+    max-width: 770px;
+  }
+  .experience-item {
+    background: rgba(0,255,195,0.10);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1.4rem;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,255,195,0.15);
+  }
+  .experience-item h3 {
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin-bottom: 0.2rem;
+  }
+  .experience-item p {
+    font-size: 1rem;
+    color: #a0f1e0;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+  .experience-item ul {
+    list-style-type: disc;
+    margin-left: 1.2rem;
+    color: #b0f7e9cc;
+    font-weight: 400;
+  }
+  .experience-item ul li {
+    margin-bottom: 0.25rem;
+  }
+&nbsp;
+&nbsp;
+
+  /* Skills container */
+  .skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+  }
+&nbsp;
+&nbsp;
+
+  /* Skills list */
+  .skills-list {
+    flex: 1 1 320px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .skill {
+    background: #00ffc3;
+    color: #003c3c;
+    padding: 0.65rem 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 30px;
+    box-shadow: 0 0 18px #00ffc3cc;
+    cursor: default;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    user-select: none;
+  }
+  .skill:hover {
+    transform: scale(1.20) rotate(3deg);
+    box-shadow: 0 0 36px #00ffde;
+  }
+&nbsp;
+&nbsp;
+
+  /* Radar chart container */
+  .radar-chart-container {
+    flex: 1 1 580px;
+    background: rgba(0, 255, 195, 0.15);
+    border-radius: 25px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0 26px rgba(0,255,195,0.30);
+  }
+&nbsp;
+&nbsp;
+
+  .radar-chart-title {
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: #00ffc3;
+    margin-bottom: 1rem;
+    user-select: none;
+  }
+&nbsp;
+&nbsp;
+
+  svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+&nbsp;
+&nbsp;
+
+  /* Footer */
+  footer {
+    margin-top: 3.5rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #00ffc3;
+    text-shadow: 0 0 10px #00ffc3;
+    user-select: none;
+  }
+&nbsp;
+&nbsp;
+
+  /* Animations */
+  @keyframes fadeInSlide {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+  }
+&nbsp;
+&nbsp;
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .container {
+      padding: 1.8rem 2rem;
+      margin: 1.2rem auto 3rem;
+    }
+    header {
+      flex-direction: column;
+    }
+    header img {
+      width: 160px;
+      height: 160px;
+      box-shadow: 0 0 28px #00ffc3;
+    }
+    header h1 {
+      font-size: 3.2rem;
+      text-align: center;
+    }
+    .intro-text {
+      max-width: 100%;
+      text-align: center;
+    }
+    .contact-info {
+      justify-content: center;
+      font-size: 1.05rem;
+      gap: 1.5rem;
+    }
+    .skills-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .skills-list,
+    .radar-chart-container {
+      flex: 1 1 100%;
+    }
+    .radar-chart-container {
+      padding: 1.2rem 1.5rem;
+    }
+  }
+&nbsp;
+&nbsp;
+
+  @media (max-width: 400px) {
+    header h1 {
+      font-size: 2.6rem;
+    }
+    .contact-info {
+      font-size: 0.95rem;
+    }
+    .summary {
+      font-size: 1rem;
+    }
+    section h2 {
+      font-size: 2rem;
+      padding-left: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+&nbsp;
+&nbsp;
+
+<div id="background" aria-hidden="true"></div>
+&nbsp;
+&nbsp;
+
+<main class="container" role="main" aria-label="Portfolio website for Nitesh Kumar">
+  <header>
+    <img src="https://i.pravatar.cc/180?u=nitesh.kumar" alt="Profile Photo of Nitesh Kumar" />
+    <div>
+      <h1>NITESH KUMAR</h1>
+      <p>Digital Portfolio & Resume</p>
+      <p class="intro-text">
+        Passionate Computer Science graduate with a flair for creating elegant solutions in the digital world. Skilled in modern frontend and backend technologies with solid problem-solving and communication skills.
+      </p>
+      <div class="contact-info" aria-label="Contact Information">
+        <span title="Phone Number" aria-label="Phone Number">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.75 3.86.75a1 1 0 011 1v3.5a1 1 0 01-1 1A17.936 17.936 0 012 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.33.26 2.65.75 3.86a1 1 0 01-.21 1.11l-2.42 2.42z"/>
+          </svg>
+          6360190160
+        </span>
+        <span title="Email Address" aria-label="Email Address">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2v.01L12 13 4 6.01V6h16z"/>
+          </svg>
+          <a href="mailto:niteshsanjith@gmail.com" rel="noopener noreferrer">niteshsanjith@gmail.com</a>
+        </span>
+      </div>
+    </div>
+  </header>
+&nbsp;
+&nbsp;
+
+  <section aria-label="Education">
+    <h2>Education</h2>
+    <div class="education" role="region" aria-describedby="edu-desc">
+      <h3>Bachelor of Computer Science (BCA)</h3>
+      <p id="edu-desc">Higher Qualification</p>
+    </div>
+  </section>
+&nbsp;
+&nbsp;
+
+  <section aria-label="Professional Summary">
+    <h2>About Me</h2>
+    <p class="summary">
+      Enthusiastic Computer Science graduate with a solid foundation in programming, problem-solving, and digital technologies. Passionate about leveraging technology to create impactful solutions and continuously learning new skills in the evolving IT landscape.
+    </p>
+  </section>
+&nbsp;
+&nbsp;
+
+  <section aria-label="Work Experience">
+    <h2>Experience</h2>
+    <div class="experience-list">
+      <article class="experience-item" role="article">
+        <h3>Intern - Software Development</h3>
+        <p>Tech Solutions Pvt Ltd | June 2023 - Aug 2023</p>
+        <ul>
+          <li>Developed and enhanced features using React and Node.js for internal web applications.</li>
+          <li>Collaborated with a team of developers using Git version control and Agile methodology.</li>
+          <li>Performed debugging and testing reducing bugs by 30% during sprint cycles.</li>
+        </ul>
+      </article>
+      <article class="experience-item" role="article">
+        <h3>Freelance Web Developer</h3>
+        <p>Self Employed | 2022 - Present</p>
+        <ul>
+          <li>Designed responsive websites using HTML5, CSS3, and JavaScript for small businesses.</li>
+          <li>Implemented SEO and accessibility best practices improving client site traffic.</li>
+          <li>Provided post-launch support and maintenance ensuring client satisfaction.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+&nbsp;
+&nbsp;
+
+  <section aria-label="Skills">
+    <h2>Skills</h2>
+    <div class="skills-container">
+      <div class="skills-list" role="list">
+        <div class="skill" role="listitem" tabindex="0" aria-label="JavaScript skill level 90%">JavaScript</div>
+        <div class="skill" role="listitem" tabindex="0" aria-label="HTML5 & CSS3 skill level 95%">HTML5 &amp; CSS3</div>
+        <div class="skill" role="listitem" tabindex="0" aria-label="React skill level 85%">React</div>
+        <div class="skill" role="listitem" tabindex="0" aria-label="Node.js skill level 80%">Node.js</div>
+        <div class="skill" role="listitem" tabindex="0" aria-label="Git & Version Control skill level 75%">Git &amp; Version Control</div>
+        <div class="skill" role="listitem" tabindex="0" aria-label="Problem Solving skill level 88%">Problem Solving</div>
+      </div>
+&nbsp;
+&nbsp;
+
+      <div class="radar-chart-container" aria-label="Radar chart showing skill levels">
+        <div class="radar-chart-title">Skill Proficiency Radar</div>
+        <svg id="radarChart" width="320" height="320" viewBox="0 0 320 320" role="img" aria-describedby="chartDesc">
+          <desc id="chartDesc">Radar chart representing proficiency levels across six skills: JavaScript, HTML and CSS, React, Node.js, Git, and Problem Solving.</desc>
+          <g id="grid"></g>
+          <g id="web"></g>
+          <g id="labels"></g>
+          <circle cx="160" cy="160" r="3" fill="#00ffc3" />
+        </svg>
+      </div>
+    </div>
+  </section>
+&nbsp;
+&nbsp;
+
+  <section aria-label="Projects">
+    <h2>Projects</h2>
+    <div class="experience-list">
+      <article class="experience-item" role="article">
+        <h3>Personal Portfolio Website</h3>
+        <p>Created a responsive and interactive portfolio website using React and CSS animations.</p>
+      </article>
+      <article class="experience-item" role="article">
+        <h3>Todo App</h3>
+        <p>Developed a full-stack MERN todo app with authentication and real-time updates.</p>
+      </article>
+      <article class="experience-item" role="article">
+        <h3>Blog Platform</h3>
+        <p>Built a blog platform supporting markdown and rich-text editing using Node.js backend.</p>
+      </article>
+    </div>
+  </section>
+&nbsp;
+&nbsp;
+
+  <section aria-label="Hobbies and Interests">
+    <h2>Hobbies &amp; Interests</h2>
+    <p class="summary">
+      Apart from coding, I enjoy photography, digital art, hiking, and exploring new technology trends. These activities fuel my creativity and enhance my problem-solving capabilities.
+    </p>
+  </section>
+&nbsp;
+&nbsp;
+
+  <footer>
+    &copy; 2024 Nitesh Kumar | Digital Portfolio
+  </footer>
+</main>
+&nbsp;
+&nbsp;
+
+<script>
+  // Generate floating circles for background animation
+  const background = document.getElementById('background');
+  const circleCounts = { small: 20, medium: 14, large: 8 };
+&nbsp;
+&nbsp;
+
+  function randomRange(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+&nbsp;
+&nbsp;
+
+  function createCircle(sizeClass) {
+    const circle = document.createElement('div');
+    circle.classList.add('circle', sizeClass);
+    circle.style.left = randomRange(0, 100) + 'vw';
+    circle.style.animationDuration = randomRange(15, 35) + 's';
+    circle.style.animationDelay = randomRange(0, 35) + 's';
+    circle.style.opacity = '0';
+    return circle;
+  }
+&nbsp;
+&nbsp;
+
+  function initCircles() {
+    Object.entries(circleCounts).forEach(([size, count]) => {
+      for (let i = 0; i < count; i++) {
+        const circle = createCircle(size);
+        background.appendChild(circle);
+      }
+    });
+  }
+&nbsp;
+&nbsp;
+
+  initCircles();
+&nbsp;
+&nbsp;
+
+  // Radar chart for skill levels
+  const svg = document.getElementById('radarChart');
+  const centerX = 160;
+  const centerY = 160;
+  const radius = 120;
+  const levels = 5; // number of grid levels
+  const skills = [
+    {name: 'JavaScript', value: 0.9},
+    {name: 'HTML & CSS', value: 0.95},
+    {name: 'React', value: 0.85},
+    {name: 'Node.js', value: 0.8},
+    {name: 'Git', value: 0.75},
+    {name: 'Problem Solving', value: 0.88}
+  ];
+  const numSkills = skills.length;
+  const angleStep = (2 * Math.PI) / numSkills;
+&nbsp;
+&nbsp;
+
+  const gridGroup = document.getElementById('grid');
+  const webGroup = document.getElementById('web');
+  const labelsGroup = document.getElementById('labels');
+&nbsp;
+&nbsp;
+
+  // Draw concentric polygon grids
+  for (let level = 1; level <= levels; level++) {
+    const levelRadius = (radius / levels) * level;
+    let points = '';
+    for (let i = 0; i < numSkills; i++) {
+      const angle = angleStep * i - Math.PI / 2;
+      const x = centerX + levelRadius * Math.cos(angle);
+      const y = centerY + levelRadius * Math.sin(angle);
+      points += x + ',' + y + ' ';
+    }
+    const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    polygon.setAttribute('points', points.trim());
+    polygon.setAttribute('stroke', '#00ffc3cc');
+    polygon.setAttribute('stroke-width', '1');
+    polygon.setAttribute('fill', 'none');
+    gridGroup.appendChild(polygon);
+  }
+&nbsp;
+&nbsp;
+
+  // Draw skill axis lines
+  for (let i = 0; i < numSkills; i++) {
+    const angle = angleStep * i - Math.PI / 2;
+    const x = centerX + radius * Math.cos(angle);
+    const y = centerY + radius * Math.sin(angle);
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', centerX);
+    line.setAttribute('y1', centerY);
+    line.setAttribute('x2', x);
+    line.setAttribute('y2', y);
+    line.setAttribute('stroke', '#00ffc366');
+    line.setAttribute('stroke-width', '1');
+    gridGroup.appendChild(line);
+  }
+&nbsp;
+&nbsp;
+
+  // Draw skill polygon (web)
+  let webPoints = '';
+  skills.forEach((skill, i) => {
+    const angle = angleStep * i - Math.PI / 2;
+    const skillRadius = skill.value * radius;
+    const x = centerX + skillRadius * Math.cos(angle);
+    const y = centerY + skillRadius * Math.sin(angle);
+    webPoints += x + ',' + y + ' ';
+  });
+  const webPolygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+  webPolygon.setAttribute('points', webPoints.trim());
+  webPolygon.setAttribute('fill', '#00ffc380');
+  webPolygon.setAttribute('stroke', '#00ffc3');
+  webPolygon.setAttribute('stroke-width', '2');
+  webPolygon.setAttribute('tabindex', '0');
+  webPolygon.setAttribute('aria-label', 'Radar chart showing skill levels');
+  webGroup.appendChild(webPolygon);
+&nbsp;
+&nbsp;
+
+  // Draw skill points on the polygon
+  skills.forEach((skill, i) => {
+    const angle = angleStep * i - Math.PI / 2;
+    const skillRadius = skill.value * radius;
+    const x = centerX + skillRadius * Math.cos(angle);
+    const y = centerY + skillRadius * Math.sin(angle);
+    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute('cx', x);
+    circle.setAttribute('cy', y);
+    circle.setAttribute('r', 5);
+    circle.setAttribute('fill', '#00ffc3');
+    circle.setAttribute('stroke', '#000');
+    circle.setAttribute('stroke-width', '1');
+    webGroup.appendChild(circle);
+  });
+&nbsp;
+&nbsp;
+
+  // Draw skill labels
+  skills.forEach((skill, i) => {
+    const angle = angleStep * i - Math.PI / 2;
+    const labelRadius = radius + 20;
+    const x = centerX + labelRadius * Math.cos(angle);
+    const y = centerY + labelRadius * Math.sin(angle);
+    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    label.setAttribute('x', x);
+    label.setAttribute('y', y);
+    label.setAttribute('fill', '#00ffc3');
+    label.setAttribute('font-size', '14');
+    label.setAttribute('font-weight', '700');
+    label.setAttribute('text-anchor', (x < centerX ? 'end' : 'start'));
+    label.setAttribute('alignment-baseline', 'middle');
+    label.textContent = skill.name;
+    labelsGroup.appendChild(label);
+  });
+</script>
+&nbsp;
+&nbsp;
+
+</body>
+</html>
+&nbsp;
+&nbsp;
+  
